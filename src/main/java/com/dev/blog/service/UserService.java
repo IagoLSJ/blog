@@ -1,6 +1,7 @@
 package com.dev.blog.service;
 
 import com.dev.blog.DTO.user.CreateUserDTO;
+import com.dev.blog.configs.ResourceNotFoundException;
 import com.dev.blog.model.UserEntity;
 import com.dev.blog.repository.UserRepository;
 
@@ -22,7 +23,7 @@ public class UserService {
         var userByEmail = this.findByEmail(createUserDTO.getEmail());
 
         if (userByEmail.isPresent()) {
-            throw new NoSuchElementException("E-mail not available");
+            throw new ResourceNotFoundException("E-mail not available");
         }
 
         UserEntity newUser = new UserEntity();
@@ -39,7 +40,7 @@ public class UserService {
     public UserEntity findById(UUID id) {
         var userById = this.userRepository.findById(id);
         if (!userById.isPresent()) {
-            throw new NoSuchElementException("User not found");
+            throw new ResourceNotFoundException("User not found");
         }
 
         return userById.get();
