@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface TagRepository extends JpaRepository<TagEntity, UUID> {
 
-    @Query("SELECT t FROM tag t WHERE t.title LIKE %:name%")
+    @Query("SELECT t FROM tag t WHERE t.name LIKE %:name%")
     List<TagEntity> findByName(String name);
 }
