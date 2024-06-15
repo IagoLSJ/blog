@@ -1,10 +1,7 @@
 package com.dev.blog.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,7 +15,8 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    private String fristName;
+    private String username;
 
+    @Column(unique = true)
     private String email;
 }
